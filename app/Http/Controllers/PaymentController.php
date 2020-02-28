@@ -43,10 +43,13 @@ class PaymentController extends Controller
     public function store(Request $request, \App\PaymentSchedule $sched)
     {
 
+        // dd($sched->loan->loanSetting->payment_made_total);
+
         $data = $request->validate([
             'amount' => 'required|integer',
             'date_processed' => 'required|date', 
         ]);
+
         $payment = new Payment();
         $payment->amount = $data['amount'];
         $payment->date_processed = $data['date_processed'];
@@ -55,10 +58,13 @@ class PaymentController extends Controller
 
         $sched->status = 'PAID';
         $sched->paid_date = $data['date_processed'];
-
+        $sched->amount_paid = $data['amount'];
+        $payment_made_total = $sched->loan->loanSetting->payment_made_total;
 
         if( $payment->save() ){
-            $sched->save();
+            $sched->loan->loanSetting->payment_made_total = $payment_made_total + $data['amount'];
+            $sched->loan->loanSetting->update();
+            $sched->update();
         }
 
         return redirect('/loans');

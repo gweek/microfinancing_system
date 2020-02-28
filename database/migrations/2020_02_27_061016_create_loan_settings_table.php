@@ -25,7 +25,6 @@ class CreateLoanSettingsTable extends Migration
             $table->float('gran_total');
             $table->float('payment_made_total')->nullable();
             $table->integer('next_payment_id')->default(1);
-            $table->date('nex_payment_date')->nullable();
             $table->timestamps();
 
             $table->foreign('loan_id')->references('id')->on('loans')->onDelete('cascade');

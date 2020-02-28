@@ -143,6 +143,7 @@
                                         {{ $payment->payment_sched }}
                                     </td>
                                     <td>
+                                        {{ $payment->paid_date }}
                                     </td>
                                     <td>
                                         <span class="{{ ( $payment->status === 'PAID' ) ? 'success' : 'danger' }}">{{ $payment->status }}</span>
