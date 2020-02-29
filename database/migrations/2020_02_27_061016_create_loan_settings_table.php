@@ -16,7 +16,7 @@ class CreateLoanSettingsTable extends Migration
         Schema::create('loan_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('loan_id')->index();
-            $table->boolean('status');
+            $table->boolean('status')->default(false);
             $table->date('release_date');
             $table->float('loan_amount');
             $table->float('loan_interest_month');

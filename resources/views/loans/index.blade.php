@@ -47,7 +47,7 @@
                                         <td>{{ $loan->id }}</td>
                                         <td>{{ $loan->loan_name }}</td>
                                         <td><a href="{{ route('borrower.view', $loan->borrower->id) }}">{{ $loan->borrower->fname }} {{$loan->borrower->lname}}</a></td>
-                                        <td>{{ $loan->amount }}</td>
+                                        <td>{{ number_format($loan->amount, 2,'.', ',')  }}</td>
                                         <td>{{ $loan->interest }}%</td>           
                                         <td>status</td>
                                         <td>

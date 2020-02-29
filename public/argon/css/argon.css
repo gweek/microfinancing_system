@@ -21874,3 +21874,15 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 .danger{
     color:#f5365c!important;
 }
+.loan-details{
+    font-size: .875rem;
+    font-weight: 500;
+    width:100%;
+}
+.loan-details tr{
+    /*border-bottom: .4px solid #c4c4c4;*/
+    /*padding-bottom:2px;*/
+}
+.loan-details tr td{
+    padding-top:10px;
+}

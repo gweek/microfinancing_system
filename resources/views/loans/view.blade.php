@@ -9,10 +9,10 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                        <table>
+                        <table class="loan-details">
                             <tbody>
                                 <tr>
-                                    <td colspan="4"><span>Loan ID:</span></td>
+                                    <td colspan="4"><b>Loan ID:</b></td>
                                     <td class="pl-3"><span>{{ $loan->id }}</span></td>
                                 </tr>
                                 <tr>
@@ -29,7 +29,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4"><span>Amount:</span></td>
-                                    <td class="pl-3"><span>{{ $loan->amount }}</span></td>
+                                    <td class="pl-3"><span>{{ number_format($loan->amount, 2,'.',',') }}</span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"><span>Status:</span></td>
@@ -43,31 +43,31 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <table>
-                                <tbody>
+                            <table class="loan-details">
+                                <tbody class="">
                                     <tr>
                                         <td colspan="6"><span class="">Loan Type:</span></td>
                                         <td class="pl-3"><span id="lamount">Flate Rate</span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6"><span>Amount:</span></td>
-                                        <td class="pl-3"><span>{{ $loan->amount }}</span></td>
+                                        <td class="pl-3"><span>{{ number_format($loan->amount, 2,'.',',') }}</span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6"><span class="">Interest per Month:</span></td>
-                                        <td class="pl-3"><span id="minterest">{{ $loan->loanSetting->loan_interest_month }}</span></td>
+                                        <td class="pl-3"><span id="minterest">{{ number_format($loan->loanSetting->loan_interest_month, 2,'.',',') }}</span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6"><span class="">Interest per Term:</span></td>
-                                        <td class="pl-3"><span id="tinterest">{{ $loan->loanSetting->loan_interest_term }}</span></td>
+                                        <td class="pl-3"><span id="tinterest">{{ number_format($loan->loanSetting->loan_interest_term, 2,'.',',') }}</span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6"><span class="">Amount per Term:</span></td>
-                                        <td class="pl-3"><span id="amount-term">{{ $loan->loanSetting->loan_interest_total }}</span></td>
+                                        <td class="pl-3"><span id="amount-term">{{ number_format($loan->loanSetting->loan_interest_total, 2,'.',',') }}</span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6"><span class="">Total Payment:</span></td>
-                                        <td class="pl-3"><span id="total-payment">{{ $loan->loanSetting->gran_total }}</span></td>
+                                        <td class="pl-3"><span id="total-payment">{{ number_format($loan->loanSetting->gran_total, 2,'.',',') }}</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -77,7 +77,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <table>
+                            <table class="loan-details">
                                 <tbody>
                                     <tr>
                                         <td colspan="4"><span>Loan Term months:</span></td>
@@ -137,7 +137,7 @@
                                         {{ $payment->payment_number }}
                                     </td>
                                     <td>
-                                        {{ $payment->amount }}
+                                        {{ number_format($payment->amount, 2, '.', ',') }}
                                     </td>
                                     <td>
                                         {{ $payment->payment_sched }}

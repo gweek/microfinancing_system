@@ -50,6 +50,8 @@ class PaymentController extends Controller
             'date_processed' => 'required|date', 
         ]);
 
+
+
         $payment = new Payment();
         $payment->amount = $data['amount'];
         $payment->date_processed = $data['date_processed'];
@@ -62,9 +64,25 @@ class PaymentController extends Controller
         $payment_made_total = $sched->loan->loanSetting->payment_made_total;
 
         if( $payment->save() ){
-            $sched->loan->loanSetting->payment_made_total = $payment_made_total + $data['amount'];
-            $sched->loan->loanSetting->update();
-            $sched->update();
+            
+            $save_schedule = $sched->update();
+
+            if($save_schedule){
+
+                    $match = ['loan_id' => $sched->loan_id, 'status' => 'UNPAID'];
+                    $active_schedule = \App\PaymentSchedule::where($match)->first();
+                    $sched->loan->loanSetting->payment_made_total = $payment_made_total + $data['amount'];
+
+                    if($active_schedule){
+                        $sched->loan->loanSetting->next_payment_id = $active_schedule->payment_number;
+                    } else {
+                        $sched->loan->loanSetting->status = true;
+                    }
+
+                    $sched->loan->loanSetting->update();
+
+            }
+
         }
 
         return redirect('/loans');
