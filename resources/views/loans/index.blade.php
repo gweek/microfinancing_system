@@ -59,9 +59,9 @@
                                                 <button class="btn btn-icon btn-sm btn-2 btn-success" type="button">
                                                     <span class="btn-inner--icon"><i class="fa fa-download" aria-hidden="true"></i></span>
                                                 </button>
-                                                <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete $loan->loan_name?") }}') ? this.parentElement.submit() : ''">
+<!--                                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete $loan->loan_name?") }}') ? this.parentElement.submit() : ''">
                                                     {{ __('Delete') }}
-                                                </button>
+                                                </button> -->
                                             </form>  
                                         </td>
                                     </tr>
