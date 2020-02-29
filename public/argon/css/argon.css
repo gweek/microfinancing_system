@@ -21874,6 +21874,11 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 .danger{
     color:#f5365c!important;
 }
+
+.primary{
+    color:#5e72e4;
+}
+
 .loan-details{
     font-size: .875rem;
     font-weight: 500;

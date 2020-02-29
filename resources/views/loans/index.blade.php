@@ -29,7 +29,7 @@
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
+                        <table class="table align-items-center table-flush" id="loans-table">
                             <thead class="thead-light">
                                 <tr>
                                     <th scole="col">ID</th>
@@ -49,7 +49,7 @@
                                         <td><a href="{{ route('borrower.view', $loan->borrower->id) }}">{{ $loan->borrower->fname }} {{$loan->borrower->lname}}</a></td>
                                         <td>{{ number_format($loan->amount, 2,'.', ',')  }}</td>
                                         <td>{{ $loan->interest }}%</td>           
-                                        <td>status</td>
+                                        <td><span class="{{ ( $loan->loanSetting->status === 'paid' ) ? 'success' : 'primary' }}">{{ $loan->loanSetting->status }}</span></td>
                                         <td>
                                             <form action="{{ route('loans.delete', $loan->id) }}" method="post">
                                                 @csrf
@@ -59,9 +59,9 @@
                                                 <button class="btn btn-icon btn-sm btn-2 btn-success" type="button">
                                                     <span class="btn-inner--icon"><i class="fa fa-download" aria-hidden="true"></i></span>
                                                 </button>
-<!--                                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete $loan->loan_name?") }}') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="confirm('{{ __("Are you sure you want to delete $loan->loan_name?") }}') ? this.parentElement.submit() : ''">
                                                     {{ __('Delete') }}
-                                                </button> -->
+                                                </button>
                                             </form>  
                                         </td>
                                     </tr>
@@ -140,12 +140,18 @@
 @endsection
 
 @push('js')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
     <script type="text/javascript">
         $(function(){
             $("#release_date").datepicker({
                 format: 'yyyy-mm-dd'
+            });
+            $("#loans-table").DataTable({
+                "pagingType": "numbers"
             });
         });
     </script>

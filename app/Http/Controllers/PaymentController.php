@@ -77,7 +77,7 @@ class PaymentController extends Controller
                     if($active_schedule !== null){
                         $sched->loan->loanSetting->next_payment_id = $active_schedule->payment_number;
                     } else {
-                        $sched->loan->loanSetting->status = false;
+                        $sched->loan->loanSetting->status = 'paid';
                     }
 
                     $sched->loan->loanSetting->update();

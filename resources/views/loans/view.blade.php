@@ -33,7 +33,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4"><span>Status:</span></td>
-                                    <td class="pl-3"><span class="success">ACTIVE</span></td>
+                                    <td class="pl-3"><span class="{{ ( $loan->loanSetting->status === 'paid' ) ? 'success' : 'primary' }}">{{ $loan->loanSetting->status }}</span></td>
                                 </tr>
                             </tbody>
                         </table>
