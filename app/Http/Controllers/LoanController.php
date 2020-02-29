@@ -99,7 +99,6 @@ class LoanController extends Controller
         }
 
         $newLoan->loanSetting()->create([
-            'status' => true,
             'release_date' => $data['release_date'],
             'loan_amount' => $data['amount'],
             'loan_interest_month' => $monthly_interest,

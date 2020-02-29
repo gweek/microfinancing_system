@@ -73,10 +73,11 @@ class PaymentController extends Controller
                     $active_schedule = \App\PaymentSchedule::where($match)->first();
                     $sched->loan->loanSetting->payment_made_total = $payment_made_total + $data['amount'];
 
-                    if($active_schedule){
+
+                    if($active_schedule !== null){
                         $sched->loan->loanSetting->next_payment_id = $active_schedule->payment_number;
                     } else {
-                        $sched->loan->loanSetting->status = true;
+                        $sched->loan->loanSetting->status = false;
                     }
 
                     $sched->loan->loanSetting->update();
